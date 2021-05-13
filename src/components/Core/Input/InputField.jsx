@@ -3,8 +3,8 @@ import "./styleInputField.css";
 
 const InputField = ({ search, setSearch }) => {
   return (
-    <Form className="center-set">
-      <Form.Group controlId="formGroupEmail">
+    <Form className="centered-object">
+      <Form.Group>
         <Form.Label>Use Search</Form.Label>
         <Form.Control
           type="text"

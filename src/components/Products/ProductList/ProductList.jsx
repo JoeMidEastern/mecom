@@ -9,6 +9,7 @@ const ProductList = ({ products }) => {
   return (
     <>
       <InputField search={search} setSearch={setSearch}></InputField>
+
       <Row>
         {products
           .filter((val) => {
@@ -28,7 +29,14 @@ const ProductList = ({ products }) => {
           .map((product, key) => {
             return (
               <>
-                <Col sm={12} md={6} lg={4} xl={3} key={key}>
+                <Col
+                  className="centering"
+                  sm={12}
+                  md={6}
+                  lg={4}
+                  xl={3}
+                  key={key}
+                >
                   <Product product={product}></Product>
                 </Col>
               </>

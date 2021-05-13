@@ -1,0 +1,22 @@
+.modal-figure {
+  margin: auto;
+}
+
+.modal-image {
+  width: 18rem;
+  height: auto;
+}
+
+.cursor {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cursor:hover {
+  color: #ffd800;
+}
+
+.caption-style {
+  margin: auto;
+  color: #ffffff;
+}
