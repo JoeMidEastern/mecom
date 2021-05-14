@@ -3,7 +3,7 @@ import ShowMore from "../../Core/ShowMore/ShowMore";
 import AddToCart from "../../Core/AddToCart/AddToCart";
 import "./styleProduct.css";
 
-const Product = ({ product }) => {
+const Product = ({ product, quickAddToCart }) => {
   return (
     <Card className="card-style my-5 product-styled-border">
       <Card.Img
@@ -15,7 +15,9 @@ const Product = ({ product }) => {
         <Card.Title className="truncated-desc">{product.name}</Card.Title>
 
         <ShowMore product={product}></ShowMore>
-        <AddToCart>Quick Add</AddToCart>
+        <AddToCart product={product} quickAddToCart={quickAddToCart}>
+          Quick Add
+        </AddToCart>
       </Card.Body>
     </Card>
   );

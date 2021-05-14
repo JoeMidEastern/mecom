@@ -4,7 +4,7 @@ import InputField from "../../Core/Input/InputField";
 import Product from "../Product/Product";
 import "./styleProductList.css";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, quickAddToCart }) => {
   const [search, setSearch] = useState("");
   return (
     <>
@@ -37,7 +37,10 @@ const ProductList = ({ products }) => {
                   xl={3}
                   key={key}
                 >
-                  <Product product={product}></Product>
+                  <Product
+                    product={product}
+                    quickAddToCart={quickAddToCart}
+                  ></Product>
                 </Col>
               </>
             );

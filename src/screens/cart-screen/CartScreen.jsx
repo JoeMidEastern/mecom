@@ -1,12 +1,6 @@
-import CartGateway from "../../components/Cart/CartGateway/CartGateway";
-import ProductGateway from "../..//components/ProductGateway/ProductGateway";
-
-const CartScreen = () => {
-  return (
-    <>
-      <CartGateway></CartGateway>
-    </>
-  );
+const CartScreen = ({ cartData }) => {
+  console.log("cart data logged from CartScreen.jsx", cartData);
+  return <>.....</>;
 };
 
 export default CartScreen;
