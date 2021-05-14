@@ -4,9 +4,11 @@ import ProductList from "../../components/Products/ProductList/ProductList";
 import CategoryDropdown from "../../components/Core/category-dropdown/CategoryDropdown";
 import "./styleTrucksHomeScreen.css";
 
-const TrucksHomeScreen = ({ products, setProducts }) => {
+const TrucksHomeScreen = ({ products, fetchProductsBySlug }) => {
   console.log("products logged from TrucksHomeScreen.jsx", products);
-
+  useEffect(() => {
+    fetchProductsBySlug("commercial-trucks");
+  });
   return (
     <>
       <Container className="my-5" style={{ backgroundColor: "#ffffff" }}>

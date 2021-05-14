@@ -19,9 +19,11 @@ const App = () => {
   ////////////////////////////////////////////////
   //@PRODUCTS
   // fetchProducts
-  const getStaticProducts = async () => {
-    const { data } = await commerce.products.list();
-    setProducts(data);
+  const fetchProductsBySlug = async (slug) => {
+    const response = await commerce.products.list({
+      category_slug: [slug],
+    });
+    setProducts(response.data);
   };
   console.log("products logged from App.js", products);
 
@@ -43,7 +45,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    getStaticProducts();
     getStaticCart();
   }, []);
 
@@ -66,7 +67,7 @@ const App = () => {
           <Route path="/mideasternchromestop">
             <TrucksHomeScreen
               products={products}
-              setProducts={setProducts}
+              fetchProductsBySlug={fetchProductsBySlug}
             ></TrucksHomeScreen>
           </Route>
         </Switch>
