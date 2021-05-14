@@ -22,40 +22,6 @@ const CategoryDropDown = ({ products }) => {
         <Dropdown.Item as="button">Another action</Dropdown.Item>
         <Dropdown.Item as="button">Something else</Dropdown.Item>
       </DropdownButton>
-      {/************************************************************* */}
-      <Row>
-        {products
-          .filter((val) => {
-            if (search === "") {
-              return val;
-            } else if (
-              val.name.toLowerCase().includes(search.toLowerCase()) ||
-              val.name.toUpperCase().includes(search.toUpperCase()) ||
-              val.sku.toLowerCase().includes(search.toLowerCase()) ||
-              val.sku.toUpperCase().includes(search.toUpperCase()) ||
-              val.description.toLowerCase().includes(search.toLowerCase()) ||
-              val.description.toUpperCase().includes(search.toUpperCase())
-            ) {
-              return val;
-            }
-          })
-          .map((product, key) => {
-            return (
-              <>
-                <Col
-                  className="centering"
-                  sm={12}
-                  md={6}
-                  lg={4}
-                  xl={3}
-                  key={key}
-                >
-                  {product.name}
-                </Col>
-              </>
-            );
-          })}
-      </Row>
     </>
   );
 };

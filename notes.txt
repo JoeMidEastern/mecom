@@ -1,1 +1,6 @@
-App <-- HomeGateway <-- ProductGateway <-- CategoryList
+home screens <-- true 
+truck screen <-- true 
+classics screen <-- true
+rv screen <-- true
+product listing and search for all screens <-- true
+quick add to cart <-- true

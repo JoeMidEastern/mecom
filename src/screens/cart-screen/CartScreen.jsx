@@ -1,7 +1,109 @@
-import React from "react";
+import {
+  Row,
+  Col,
+  ListGroup,
+  Button,
+  Image,
+  Form,
+  Card,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./styleCartScreen.css";
 
-const CartScreen = () => {
-  return <div>cart screen</div>;
+const CartScreen = ({ cartData }) => {
+  console.log("cart data logged from cart screen", cartData);
+  return (
+    <>
+      <Row>
+        <Col style={{ textAlign: "center" }} md={8}>
+          <h1 className="my-3 p-1">Shopping Cart</h1>
+
+          <ListGroup variant="flush">
+            {cartData.line_items.map((product) => {
+              return (
+                <ListGroup.Item key={product.id}>
+                  <Row>
+                    <Col md={2}>
+                      <Image
+                        src={product.media.source}
+                        style={{ width: "8rem" }}
+                      />
+                    </Col>
+                    <Col md={2}>
+                      <h6 className="white-letters">{product.name}</h6>
+                    </Col>
+                    <Col md={2}>
+                      <h5 className="white-letters">
+                        {product.price.formatted_with_code}
+                      </h5>
+                    </Col>
+                    <Col md={2}>
+                      <Button
+                        style={{ border: "1px solid #ffffff" }}
+                        className="my-2 mx-3"
+                        type="button"
+                        variant="dark"
+                      >
+                        <i className="fas fa-plus"></i>
+                      </Button>
+                    </Col>
+                    <Col md={2}>
+                      <Button
+                        style={{ border: "1px solid #ffffff" }}
+                        className="my-2 mx-3"
+                        type="button"
+                        variant="dark"
+                      >
+                        <i className="fas fa-minus"></i>
+                      </Button>
+                    </Col>
+                    <Col md={2}>
+                      <Button
+                        style={{ border: "1px solid #ffffff" }}
+                        className="my-2 mx-3"
+                        variant="dark"
+                      >
+                        <i className="fas fa-trash"></i>
+                      </Button>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              );
+            })}
+          </ListGroup>
+
+          <Col>
+            <Card className="my-3">
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h4 style={{ color: "#ffffff" }}>Total Cost:</h4>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Link to="/checkout">
+                    <Button type="button" className="btn-block my-4">
+                      Proceed To Checkout
+                    </Button>
+                  </Link>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card>
+          </Col>
+          <ListGroup.Item>
+            <Col sm={12}>
+              <i
+                style={{ color: "#ffffff" }}
+                variant="danger"
+                type="button"
+                className="btn-block my-4"
+                className="far fa-trash-alt fa-4x ml-auto"
+              ></i>
+              <p style={{ color: "#ffffff" }}>Empty Cart</p>
+            </Col>
+          </ListGroup.Item>
+        </Col>
+      </Row>
+    </>
+  );
 };
 
 export default CartScreen;

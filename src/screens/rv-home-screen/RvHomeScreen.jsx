@@ -1,23 +1,20 @@
 import { Container, Image } from "react-bootstrap";
 import React, { useEffect } from "react";
 import ProductList from "../../components/Products/ProductList/ProductList";
-import CategoryDropdown from "../../components/Core/category-dropdown/CategoryDropdown";
-import "./styleTrucksHomeScreen.css";
+import Loader1 from "../../components/Core/Loaders/Loader1/Loader1";
+//import CategoryDropdown from "../../components/Core/category-dropdown/CategoryDropdown";
 
-const TrucksHomeScreen = ({
-  products,
-  fetchProductsBySlug,
-  quickAddToCart,
-}) => {
-  console.log("products logged from TrucksHomeScreen.jsx", products);
+const RvHomeScreen = ({ products, fetchProductsBySlug, quickAddToCart }) => {
+  console.log("products logged from RvHomeScreen.jsx", products);
   useEffect(() => {
-    fetchProductsBySlug("commercial-trucks");
+    fetchProductsBySlug("rv");
   }, []);
+
   return (
     <>
       <Container className="my-5" style={{ backgroundColor: "#ffffff" }}>
         <Image
-          src="/assets/general-images/truckerLifeClear.jpg"
+          src="/assets/general-images/rv_vector.png"
           style={{
             position: "relative",
             left: "50%",
@@ -38,4 +35,4 @@ const TrucksHomeScreen = ({
   );
 };
 
-export default TrucksHomeScreen;
+export default RvHomeScreen;

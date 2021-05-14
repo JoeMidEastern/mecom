@@ -6,6 +6,8 @@ import HomeScreen from "./screens/home-screen/HomeScreen";
 import CartScreen from "./screens/cart-screen/CartScreen";
 import LoginScreen from "./screens/login-screen/LoginScreen";
 import TrucksHomeScreen from "./screens/trucks-home-screen/TrucksHomeScreen";
+import ClassicsHomeScreen from "./screens/classics-home-screen/ClassicsHomeScreen";
+import RvHomeScreen from "./screens/rv-home-screen/RvHomeScreen";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
@@ -68,7 +70,22 @@ const App = () => {
             <TrucksHomeScreen
               products={products}
               fetchProductsBySlug={fetchProductsBySlug}
+              quickAddToCart={quickAddToCart}
             ></TrucksHomeScreen>
+          </Route>
+          <Route path="/classics">
+            <ClassicsHomeScreen
+              products={products}
+              fetchProductsBySlug={fetchProductsBySlug}
+              quickAddToCart={quickAddToCart}
+            ></ClassicsHomeScreen>
+          </Route>
+          <Route path="/rv">
+            <RvHomeScreen
+              products={products}
+              fetchProductsBySlug={fetchProductsBySlug}
+              quickAddToCart={quickAddToCart}
+            ></RvHomeScreen>
           </Route>
         </Switch>
       </main>
