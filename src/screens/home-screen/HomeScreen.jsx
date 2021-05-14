@@ -1,12 +1,14 @@
-import ProductList from "../../components/Products/ProductList/ProductList";
+import { Container } from "react-bootstrap";
+import MECarousel from "../../components/Core/MECarousel/MECarousel";
+import PagesDisplay from "../../components/Core/pages-display/PagesDisplay";
 
 const HomeScreen = ({ products, quickAddToCart }) => {
   console.log("products logged from HomeScreen.jsx", products);
   return (
-    <ProductList
-      products={products}
-      quickAddToCart={quickAddToCart}
-    ></ProductList>
+    <Container>
+      <MECarousel></MECarousel>
+      <PagesDisplay products={products}></PagesDisplay>
+    </Container>
   );
 };
 

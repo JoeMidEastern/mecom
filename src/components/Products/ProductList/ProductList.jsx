@@ -1,6 +1,8 @@
 import { Row, Col } from "react-bootstrap";
 import React, { useState } from "react";
 import InputField from "../../Core/Input/InputField";
+//import CategoryDropdown from "../../Core/category-dropdown/CategoryDropdown";
+
 import Product from "../Product/Product";
 import "./styleProductList.css";
 
