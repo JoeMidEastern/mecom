@@ -33,6 +33,7 @@ const Navigate = ({ cartItems, totalCost }) => {
                       className="px-1"
                       style={{
                         borderRadius: "50%",
+                        backgroundColor: "white",
                       }}
                       variant="light"
                     >

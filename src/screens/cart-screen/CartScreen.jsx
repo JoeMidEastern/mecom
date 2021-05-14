@@ -15,6 +15,7 @@ const CartScreen = ({
   updateProduct,
   handleEmptyCart,
   removeProductFromCart,
+  totalCost,
 }) => {
   console.log("cart data logged from cart screen", cartData);
   return (
@@ -88,7 +89,7 @@ const CartScreen = ({
             <Card className="my-3">
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h4 style={{ color: "#ffffff" }}>Total Cost:</h4>
+                  <h4 style={{ color: "#ffffff" }}>Subtotal: {totalCost}</h4>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Link to="/checkout">

@@ -72,7 +72,13 @@ const App = () => {
 
   return (
     <Router>
-      <Navigate />
+      <Navigate
+        cartItems={cartData.toal_items}
+        totalCost={
+          (cartData.subtotal && cartData.subtotal.formatted_with_symbol) ||
+          "00.00"
+        }
+      />
       <main className="main-container">
         <Switch>
           <Route exact path="/">
@@ -84,6 +90,11 @@ const App = () => {
               updateProduct={updateProduct}
               handleEmptyCart={handleEmptyCart}
               removeProductFromCart={removeProductFromCart}
+              totalCost={
+                (cartData.subtotal &&
+                  cartData.subtotal.formatted_with_symbol) ||
+                "00.00"
+              }
             ></CartScreen>
           </Route>
           <Route path="/login">
