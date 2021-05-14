@@ -1,5 +1,12 @@
+import CartGateway from "../../components/Cart/CartGateway/CartGateway";
+import ProductGateway from "../..//components/ProductGateway/ProductGateway";
+
 const CartScreen = () => {
-  return <h3>Cart Screen</h3>;
+  return (
+    <>
+      <CartGateway></CartGateway>
+    </>
+  );
 };
 
 export default CartScreen;

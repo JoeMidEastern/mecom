@@ -1,10 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigate from "./components/Navigate/Navigate";
 import HomeScreen from "./screens/home-screen/HomeScreen";
-import HomeGateway from "./components/HomeGateway/HomeGateway";
-import CategoryScreen from "./screens/category-screen/CategoryScreen";
+import CartScreen from "./screens/cart-screen/CartScreen";
 import Footer from "./components/Footer/Footer";
-import ProductGateway from "./components/ProductGateway/ProductGateway";
 
 const App = () => {
   return (
@@ -14,6 +12,9 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <HomeScreen></HomeScreen>
+          </Route>
+          <Route path="/cart">
+            <CartScreen></CartScreen>
           </Route>
         </Switch>
       </main>
