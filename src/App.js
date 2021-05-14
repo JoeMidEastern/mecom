@@ -46,6 +46,24 @@ const App = () => {
     setCartData(response.cart);
   };
 
+  // update product quantity in cart
+  const updateProduct = async (productId, quantity) => {
+    const response = await commerce.cart.update(productId, { quantity });
+    setCartData(response.cart);
+  };
+
+  // remove product from cart
+  const removeProductFromCart = async (itemId) => {
+    const response = await commerce.cart.remove(itemId);
+    setCartData(response.cart);
+  };
+
+  // empty cart
+  const handleEmptyCart = async () => {
+    const response = await commerce.cart.empty();
+    setCartData(response.cart);
+  };
+
   useEffect(() => {
     getStaticCart();
   }, []);
@@ -61,7 +79,12 @@ const App = () => {
             <HomeScreen products={products}></HomeScreen>
           </Route>
           <Route path="/cart">
-            <CartScreen cartData={cartData}></CartScreen>
+            <CartScreen
+              cartData={cartData}
+              updateProduct={updateProduct}
+              handleEmptyCart={handleEmptyCart}
+              removeProductFromCart={removeProductFromCart}
+            ></CartScreen>
           </Route>
           <Route path="/login">
             <LoginScreen></LoginScreen>

@@ -10,7 +10,12 @@ import {
 import { Link } from "react-router-dom";
 import "./styleCartScreen.css";
 
-const CartScreen = ({ cartData }) => {
+const CartScreen = ({
+  cartData,
+  updateProduct,
+  handleEmptyCart,
+  removeProductFromCart,
+}) => {
   console.log("cart data logged from cart screen", cartData);
   return (
     <>
@@ -43,6 +48,9 @@ const CartScreen = ({ cartData }) => {
                         className="my-2 mx-3"
                         type="button"
                         variant="dark"
+                        onClick={() =>
+                          updateProduct(product.id, product.quantity + 1)
+                        }
                       >
                         <i className="fas fa-plus"></i>
                       </Button>
@@ -53,6 +61,9 @@ const CartScreen = ({ cartData }) => {
                         className="my-2 mx-3"
                         type="button"
                         variant="dark"
+                        onClick={() =>
+                          updateProduct(product.id, product.quantity - 1)
+                        }
                       >
                         <i className="fas fa-minus"></i>
                       </Button>
@@ -62,6 +73,7 @@ const CartScreen = ({ cartData }) => {
                         style={{ border: "1px solid #ffffff" }}
                         className="my-2 mx-3"
                         variant="dark"
+                        onClick={() => removeProductFromCart(product.id)}
                       >
                         <i className="fas fa-trash"></i>
                       </Button>
@@ -96,6 +108,7 @@ const CartScreen = ({ cartData }) => {
                 type="button"
                 className="btn-block my-4"
                 className="far fa-trash-alt fa-4x ml-auto"
+                onClick={() => handleEmptyCart()}
               ></i>
               <p style={{ color: "#ffffff" }}>Empty Cart</p>
             </Col>

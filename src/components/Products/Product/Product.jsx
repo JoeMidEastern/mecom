@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import ShowMore from "../../Core/ShowMore/ShowMore";
 import AddToCart from "../../Core/AddToCart/AddToCart";
 import "./styleProduct.css";
@@ -11,6 +11,7 @@ const Product = ({ product, quickAddToCart }) => {
         <Card.Title className="truncated-desc">{product.name}</Card.Title>
 
         <ShowMore product={product}></ShowMore>
+
         <AddToCart product={product} quickAddToCart={quickAddToCart}>
           Quick Add
         </AddToCart>

@@ -4,3 +4,6 @@ classics screen <-- true
 rv screen <-- true
 product listing and search for all screens <-- true
 quick add to cart <-- true
+increment/decrement cart items <-- true
+remove item from cart <-- true
+empty cart < -- true
