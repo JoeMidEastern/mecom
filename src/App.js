@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Navigate from "./components/Navigate/Navigate";
 import HomeScreen from "./screens/home-screen/HomeScreen";
 import CartScreen from "./screens/cart-screen/CartScreen";
+import CheckoutScreen from "./screens/checkout-screen/CheckoutScreen";
 import LoginScreen from "./screens/login-screen/LoginScreen";
 import TrucksHomeScreen from "./screens/trucks-home-screen/TrucksHomeScreen";
 import ClassicsHomeScreen from "./screens/classics-home-screen/ClassicsHomeScreen";
@@ -14,6 +15,7 @@ const App = () => {
   //@useState hooks
   const [products, setProducts] = useState([]);
   const [cartData, setCartData] = useState({});
+  const [cartId, setCartId] = useState({});
   ////////////////////////////////////////////////
   ////////////////////////////////////////////////
   ////////////////////////////////////////////////
@@ -64,15 +66,26 @@ const App = () => {
     setCartData(response.cart);
   };
 
+  // refresh cart (after checkout process completion)
+  // refresh cart function here
+
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  //@Checkout
+
+  console.log("cart data logged from App.js", cartData);
+
   useEffect(() => {
     getStaticCart();
   }, []);
 
-  console.log("cart data logged from App.js", cartData);
-
   return (
     <Router>
       <Navigate
+        cartData={cartData}
         cartItems={cartData.total_items}
         totalCost={
           (cartData.subtotal && cartData.subtotal.formatted_with_symbol) ||
@@ -96,6 +109,9 @@ const App = () => {
                 "00.00"
               }
             ></CartScreen>
+          </Route>
+          <Route path="/checkout">
+            <CheckoutScreen cartData={cartData}></CheckoutScreen>
           </Route>
           <Route path="/login">
             <LoginScreen></LoginScreen>

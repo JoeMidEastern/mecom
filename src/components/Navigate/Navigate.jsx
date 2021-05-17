@@ -2,7 +2,7 @@ import { Navbar, Nav, Badge, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useLocation } from "react-router-dom";
 
-const Navigate = ({ cartItems, totalCost }) => {
+const Navigate = ({ cartItems, totalCost, cartData }) => {
   const location = useLocation();
 
   return (
@@ -21,7 +21,7 @@ const Navigate = ({ cartItems, totalCost }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            {location.pathname === "/cart" ? (
+            {location.pathname === `/cart` ? (
               <div>
                 <h3 style={{ color: "white" }}>Total Cost: {totalCost}</h3>
               </div>
