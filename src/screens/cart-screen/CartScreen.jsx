@@ -36,7 +36,7 @@ const CartScreen = ({
 
   if (!cartData.line_items || !cartData.line_items.length) return load();
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col style={{ textAlign: "center" }} md={8}>
           <h1 className="my-3 p-1">Shopping Cart</h1>
@@ -44,7 +44,11 @@ const CartScreen = ({
           <ListGroup variant="flush">
             {cartData.line_items.map((product) => {
               return (
-                <ListGroup.Item key={product.id}>
+                <ListGroup.Item
+                  className="my-3"
+                  style={{ borderBottom: "1px solid #ffd800" }}
+                  key={product.id}
+                >
                   <Row>
                     <Col md={2}>
                       <Image
