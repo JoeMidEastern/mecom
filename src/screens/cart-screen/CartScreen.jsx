@@ -6,6 +6,7 @@ import {
   Image,
   Form,
   Card,
+  Container,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -35,7 +36,7 @@ const CartScreen = ({
 
   if (!cartData.line_items || !cartData.line_items.length) return load();
   return (
-    <>
+    <Container>
       <Row>
         <Col style={{ textAlign: "center" }} md={8}>
           <h1 className="my-3 p-1">Shopping Cart</h1>
@@ -52,7 +53,7 @@ const CartScreen = ({
                       />
                     </Col>
                     <Col md={2}>
-                      <h6 className="white-letters">{product.name}</h6>
+                      <h6 className="white-letters p-3 ">{product.name}</h6>
                     </Col>
                     <Col md={2}>
                       <h5 className="white-letters">
@@ -132,7 +133,7 @@ const CartScreen = ({
           </ListGroup.Item>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 
