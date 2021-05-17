@@ -73,7 +73,7 @@ const App = () => {
   return (
     <Router>
       <Navigate
-        cartItems={cartData.toal_items}
+        cartItems={cartData.total_items}
         totalCost={
           (cartData.subtotal && cartData.subtotal.formatted_with_symbol) ||
           "00.00"

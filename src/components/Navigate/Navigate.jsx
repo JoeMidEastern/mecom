@@ -30,10 +30,10 @@ const Navigate = ({ cartItems, totalCost }) => {
                 <Nav.Link>
                   <i className="fas fa-shopping-cart mr-3">
                     <Badge
-                      className="px-1"
+                      className="p-1"
                       style={{
                         borderRadius: "50%",
-                        backgroundColor: "white",
+                        backgroundColor: "#c74747",
                       }}
                       variant="light"
                     >
