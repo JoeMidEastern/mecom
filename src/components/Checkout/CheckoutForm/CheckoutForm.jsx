@@ -11,8 +11,11 @@ import {
 } from "@material-ui/core";
 import { commerce } from "../../../lib/commerce";
 import React, { useState, useEffect } from "react";
+import AdrressForm from "../AddressForm/AddressForm";
+import Confirmation from "../Confirmation/Confirmation";
 import useStyles from "./styles";
 import "./styleCheckoutForm.css";
+import AddressForm from "../AddressForm/AddressForm";
 
 // the steps of the checkout process to be rendered on the Paper component
 const steps = ["Shipping Address", "Payment Details"];
@@ -22,6 +25,9 @@ const CheckoutForm = () => {
   // steps
   const [activeStep, setActiveStep] = useState(0);
 
+  // @ forms depending on step
+  const TwoForms = () =>
+    activeStep === 0 ? <AddressForm></AddressForm> : <p>show payment form</p>;
   const classes = useStyles();
   return (
     <Container>
@@ -47,6 +53,11 @@ const CheckoutForm = () => {
               </Step>
             ))}
           </Stepper>
+          {activeStep === steps.length ? (
+            <Confirmation></Confirmation>
+          ) : (
+            <TwoForms></TwoForms>
+          )}
         </Paper>
       </main>
     </Container>
