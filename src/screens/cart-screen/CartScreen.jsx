@@ -8,6 +8,9 @@ import {
   Card,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import Loader1 from "../../components/Core/Loaders/Loader1/Loader1";
+import EmptyBanner from "../../components/Core/EmptyBanner/EmptyBanner";
 import "./styleCartScreen.css";
 
 const CartScreen = ({
@@ -17,7 +20,20 @@ const CartScreen = ({
   removeProductFromCart,
   totalCost,
 }) => {
+  const [loading, setLoading] = useState(true);
   console.log("cart data logged from cart screen", cartData);
+
+  const load = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    if (loading) {
+      return <Loader1 />;
+    }
+    return <EmptyBanner />;
+  };
+
+  if (!cartData.line_items || !cartData.line_items.length) return load();
   return (
     <>
       <Row>
