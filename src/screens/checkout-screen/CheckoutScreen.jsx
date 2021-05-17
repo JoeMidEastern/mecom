@@ -1,9 +1,9 @@
 import CheckoutForm from "../../components/Checkout/CheckoutForm/CheckoutForm";
 
-const CheckoutScreen = () => {
+const CheckoutScreen = ({ cartData }) => {
   return (
     <div>
-      <CheckoutForm></CheckoutForm>
+      <CheckoutForm cartData={cartData}></CheckoutForm>
     </div>
   );
 };

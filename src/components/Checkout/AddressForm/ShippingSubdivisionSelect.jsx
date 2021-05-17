@@ -16,8 +16,8 @@ const ShippingSubdivisionSelect = () => {
   const [shippingSubdivision, setShippingSubdivision] = useState("");
 
   return (
-    <Grid item xs={12} sm={6} style={{ marginLeft: "1rem", marginTop: "2rem" }}>
-      <InputLabel>Subdivision</InputLabel>
+    <Grid item xs={12} sm={6} style={{ marginTop: "2rem", padding: "1rem" }}>
+      <InputLabel>Shipping Subdivision</InputLabel>
       <Select value={""} fullWidth onChange={""}>
         <MenuItem></MenuItem>
       </Select>

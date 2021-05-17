@@ -9,14 +9,16 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import { commerce } from "../../../lib/commerce";
 import CustomTextFields from "../CustomTextFields/CustomTextFields";
 import ShippingCountrySelect from "./ShippingCountrySelect";
 import ShippingSubdivisionSelect from "./ShippingSubdivisionSelect";
 import ShippingOptionsSelect from "./ShippingOptionsSelect";
 
-const AddressForm = () => {
+const AddressForm = ({ checkoutToken }) => {
   //@ react-hook-form enable
   const methods = useForm();
+
   return (
     <>
       <Typography
@@ -45,7 +47,8 @@ const AddressForm = () => {
               name="zipcode"
               label="Zip / Postal code"
             />
-            <ShippingCountrySelect />
+
+            <ShippingCountrySelect checkoutToken={checkoutToken} />
             <ShippingSubdivisionSelect />
             <ShippingOptionsSelect />
           </Grid>

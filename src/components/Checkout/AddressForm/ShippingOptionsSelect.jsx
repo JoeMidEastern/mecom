@@ -16,7 +16,7 @@ const ShippingOptionsSelect = () => {
   const [shippingOption, setShippingOption] = useState("");
 
   return (
-    <Grid item xs={12} sm={6} style={{ marginLeft: "1rem", marginTop: "2rem" }}>
+    <Grid item xs={12} sm={6} style={{ marginTop: "2rem", padding: "1rem" }}>
       <InputLabel>Shipping Options</InputLabel>
       <Select value={""} fullWidth onChange={""}>
         <MenuItem></MenuItem>
