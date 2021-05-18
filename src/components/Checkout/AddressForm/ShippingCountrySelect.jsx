@@ -35,6 +35,13 @@ const ShippingCountrySelect = ({ checkoutToken }) => {
     checkoutToken
   );
 
+  // @ to turn country codes into array and map over
+  const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+    id: code,
+    label: name,
+  }));
+  console.log("countries", countries);
+
   console.log(shippingCountries);
   console.log(shippingCountry);
   return (
@@ -45,7 +52,11 @@ const ShippingCountrySelect = ({ checkoutToken }) => {
         fullWidth
         onChange={(e) => setShippingCountry(e.target.value)}
       >
-        <MenuItem></MenuItem>
+        {countries.map((country) => (
+          <MenuItem key={country.id} value={country.id}>
+            {country.label}
+          </MenuItem>
+        ))}
       </Select>
     </Grid>
   );
