@@ -21,6 +21,12 @@ const AddressForm = ({ checkoutToken }) => {
   // shipping countries
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState("");
+  // shipping subdivisions
+  const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+  const [shippingSubdivision, setShippingSubdivision] = useState("");
+  // shipping options
+  const [shippingOptions, setShippingOptions] = useState([]);
+  const [shippingOption, setShippingOption] = useState("");
 
   ////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////
@@ -54,9 +60,75 @@ const AddressForm = ({ checkoutToken }) => {
   ////////////////////////////////////////////////////////////////////////////
   // Shipping Subdivisions
 
+  // @ to turn subdivisions into array and map over
+  const subdivisions = Object.entries(shippingSubdivisions).map(
+    ([code, name]) => ({
+      id: code,
+      label: name,
+    })
+  );
+
+  // fetch shipping subdivisions
+  const getStaticShippingSubdivisions = async (countryCode) => {
+    const { subdivisions } = await commerce.services.localeListSubdivisions(
+      countryCode
+    );
+    setShippingSubdivisions(subdivisions);
+    setShippingSubdivision(Object.keys(subdivisions)[0]);
+  };
+
+  const handleShippingSubdivisionChange = (e) => {
+    setShippingSubdivision(e.target.value);
+  };
+
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  // Shipping options
+
+  const options = shippingOptions.map((eachShippingOption) => ({
+    id: eachShippingOption.id,
+    label: `${eachShippingOption.description} - (${eachShippingOption.price.formatted_with_symbol})`,
+  }));
+
+  const getStaticShippingOptions = async (
+    checkoutTokenId,
+    country,
+    region = null
+  ) => {
+    const options = await commerce.checkout.getShippingOptions(
+      checkoutTokenId,
+      { country, region }
+    );
+    setShippingOptions(options);
+    setShippingOption(options[0].id);
+  };
+
+  const handleShippingOptionsChange = (e) => {
+    setShippingOptions(e.target.value);
+  };
+  console.log(shippingOptions);
+  //////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////
+  // fetching with useEffect hooks
+
   useEffect(() => {
     getStaticShippingCountries(checkoutToken.id);
   }, []);
+  useEffect(() => {
+    if (shippingCountry) getStaticShippingSubdivisions(shippingCountry);
+  }, [shippingCountry]);
+
+  useEffect(() => {
+    if (shippingSubdivision)
+      getStaticShippingOptions(
+        checkoutToken.id,
+        shippingCountry,
+        shippingSubdivision
+      );
+  }, [shippingSubdivision]);
 
   //@ react-hook-form enable
   const methods = useForm();
@@ -92,13 +164,22 @@ const AddressForm = ({ checkoutToken }) => {
 
             <ShippingCountrySelect
               checkoutToken={checkoutToken}
-              {...shippingCountries}
-              {...shippingCountry}
+              shippingCountries={shippingCountries}
+              shippingCountry={shippingCountry}
               countries={countries}
               handleShippingCountryChange={handleShippingCountryChange}
             />
-            <ShippingSubdivisionSelect shippingCountry={shippingCountry} />
-            <ShippingOptionsSelect />
+            <ShippingSubdivisionSelect
+              shippingCountry={shippingCountry}
+              shippingSubdivision={shippingSubdivision}
+              subdivisions={subdivisions}
+              handleShippingSubdivisionChange={handleShippingSubdivisionChange}
+            />
+            <ShippingOptionsSelect
+              options={options}
+              shippingOption={shippingOption}
+              handleShippingOptionsChange={handleShippingOptionsChange}
+            />
           </Grid>
         </form>
       </FormProvider>

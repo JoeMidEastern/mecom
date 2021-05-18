@@ -7,19 +7,27 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import React, { useState } from "react";
 
-const ShippingOptionsSelect = () => {
+const ShippingOptionsSelect = ({
+  options,
+  ShippingOption,
+  handleShippingOptionsChange,
+}) => {
   //@ useState hooks
-  // shipping options
-  const [shippingOptions, setShippingOptions] = useState([]);
-  const [shippingOption, setShippingOption] = useState("");
 
   return (
     <Grid item xs={12} sm={6} style={{ marginTop: "2rem", padding: "1rem" }}>
       <InputLabel>Shipping Options</InputLabel>
-      <Select value={""} fullWidth onChange={""}>
-        <MenuItem></MenuItem>
+      <Select
+        value={ShippingOption}
+        fullWidth
+        onChange={handleShippingOptionsChange}
+      >
+        {options.map((option) => (
+          <MenuItem key={option.id} value={option.id}>
+            {option.label}
+          </MenuItem>
+        ))}
       </Select>
     </Grid>
   );
