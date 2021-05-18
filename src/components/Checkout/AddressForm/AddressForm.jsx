@@ -10,12 +10,54 @@ import {
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { commerce } from "../../../lib/commerce";
+import React, { useState, useEffect } from "react";
 import CustomTextFields from "../CustomTextFields/CustomTextFields";
 import ShippingCountrySelect from "./ShippingCountrySelect";
 import ShippingSubdivisionSelect from "./ShippingSubdivisionSelect";
 import ShippingOptionsSelect from "./ShippingOptionsSelect";
 
 const AddressForm = ({ checkoutToken }) => {
+  // @ useState hooks
+  // shipping countries
+  const [shippingCountries, setShippingCountries] = useState([]);
+  const [shippingCountry, setShippingCountry] = useState("");
+
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  // Shipping Countries
+  // @ to turn country codes into array and map over
+  const countries = Object.entries(shippingCountries).map(([code, name]) => ({
+    id: code,
+    label: name,
+  }));
+
+  // fetch shipping countries
+  const getStaticShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.localeListShippingCountries(
+      checkoutTokenId
+    );
+    setShippingCountries(countries);
+    setShippingCountry(Object.keys(countries)[0]);
+  };
+
+  const handleShippingCountryChange = (e) => {
+    setShippingCountry(e.target.value);
+  };
+
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////
+  // Shipping Subdivisions
+
+  useEffect(() => {
+    getStaticShippingCountries(checkoutToken.id);
+  }, []);
+
   //@ react-hook-form enable
   const methods = useForm();
 
@@ -48,8 +90,14 @@ const AddressForm = ({ checkoutToken }) => {
               label="Zip / Postal code"
             />
 
-            <ShippingCountrySelect checkoutToken={checkoutToken} />
-            <ShippingSubdivisionSelect />
+            <ShippingCountrySelect
+              checkoutToken={checkoutToken}
+              {...shippingCountries}
+              {...shippingCountry}
+              countries={countries}
+              handleShippingCountryChange={handleShippingCountryChange}
+            />
+            <ShippingSubdivisionSelect shippingCountry={shippingCountry} />
             <ShippingOptionsSelect />
           </Grid>
         </form>
