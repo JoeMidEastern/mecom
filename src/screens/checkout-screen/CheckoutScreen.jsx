@@ -1,4 +1,4 @@
-import CheckoutForm from "../../components/Checkout/CheckoutForm/CheckoutForm";
+/* import CheckoutForm from "../../components/Checkout/CheckoutForm/CheckoutForm";
 
 const CheckoutScreen = ({ cartData }) => {
   return (
@@ -9,3 +9,4 @@ const CheckoutScreen = ({ cartData }) => {
 };
 
 export default CheckoutScreen;
+ */

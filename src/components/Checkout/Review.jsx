@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, List, ListItem, ListItemText } from "@material-ui/core";
+import { commerce } from "../../lib/commerce";
 
 const Review = ({ checkoutToken }) => {
   const [liveObj, setLiveObj] = useState({});

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Navigate from "./components/Navigate/Navigate";
 import HomeScreen from "./screens/home-screen/HomeScreen";
 import CartScreen from "./screens/cart-screen/CartScreen";
-import CheckoutScreen from "./screens/checkout-screen/CheckoutScreen";
+import Checkout from "./components/Checkout/Checkout";
 import LoginScreen from "./screens/login-screen/LoginScreen";
 import TrucksHomeScreen from "./screens/trucks-home-screen/TrucksHomeScreen";
 import ClassicsHomeScreen from "./screens/classics-home-screen/ClassicsHomeScreen";
@@ -16,6 +16,8 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [cartData, setCartData] = useState({});
   const [cartId, setCartId] = useState({});
+  const [order, setOrder] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   ////////////////////////////////////////////////
   ////////////////////////////////////////////////
   ////////////////////////////////////////////////
@@ -60,13 +62,18 @@ const App = () => {
     setCartData(response.cart);
   };
 
+  // refresh cart (after checkout process completion)
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCartData(newCart);
+  };
+
   // empty cart
   const handleEmptyCart = async () => {
     const response = await commerce.cart.empty();
     setCartData(response.cart);
   };
 
-  // refresh cart (after checkout process completion)
   // refresh cart function here
 
   ////////////////////////////////////////////////
@@ -75,6 +82,19 @@ const App = () => {
   ////////////////////////////////////////////////
   ////////////////////////////////////////////////
   //@Checkout
+
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(
+        checkoutTokenId,
+        newOrder
+      );
+      setOrder(incomingOrder);
+      refreshCart();
+    } catch (error) {
+      setErrorMessage(error.data.error.message);
+    }
+  };
 
   console.log("cart data logged from App.js", cartData);
 
@@ -111,7 +131,10 @@ const App = () => {
             ></CartScreen>
           </Route>
           <Route path="/checkout">
-            <CheckoutScreen cartData={cartData}></CheckoutScreen>
+            <Checkout
+              cartData={cartData}
+              onCaptureCheckout={handleCaptureCheckout}
+            ></Checkout>
           </Route>
           <Route path="/login">
             <LoginScreen></LoginScreen>
